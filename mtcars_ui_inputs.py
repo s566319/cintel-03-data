@@ -32,7 +32,7 @@ def get_mtcars_inputs():
             ui.tags.p("Description of each field in the table:"),
             ui.tags.ul(
                 ui.tags.li("mpg: Miles per Gallon"),
-                ui.tags.li("col: Color of your choice"),
+                ui.tags.li("cyl: Number of cylinders"),
                 ui.tags.li("disp: Displacement (cubic inches)"),
                 ui.tags.li("hp: Gross horsepower"),
                 ui.tags.li("drat: Rear axle ratio"),
@@ -42,6 +42,7 @@ def get_mtcars_inputs():
                 ui.tags.li("am: Transmission (0 = Automatic, 1 = Manual)"),
                 ui.tags.li("gear: Number of forward gears"),
                 ui.tags.li("carb: Number of carburetors"),
+                ui.tags.li("col: Color"),
             ),
             ui.output_table("cars_table"),
         ),
