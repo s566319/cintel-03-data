@@ -34,7 +34,7 @@ app_ui = ui.page_navbar(
                 ui.h3("User Interaction Here"),
                 ui.input_text("name_input", "Enter your name", placeholder="Your Name"),
                 ui.input_text(
-                    "language_input",
+                    "Country_input",
                     "Enter Your Favorite Country to Visit",
                     placeholder="Favorite Country",
                 ),
@@ -90,7 +90,7 @@ def server(input, output, session):
     @render.text
     def welcome_output():
         user = input.name_input()
-        welcome_string = f'Welcome to this page! {user}!'
+        welcome_string = f'Welcome to this page! {user}'
         return welcome_string
 
     @output
