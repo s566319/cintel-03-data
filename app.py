@@ -6,6 +6,7 @@ Each Shiny app has two parts:
 
 - a user interface app_ui object (similar to the HTML in a web page) 
 - a server function that provides the logic for the app (similar to JS in a web page).
+- we add in the iris dataset we loaded earlier
 
 """
 import shinyswatch
@@ -33,15 +34,15 @@ app_ui = ui.page_navbar(
         "Home",
         ui.layout_sidebar(
             ui.panel_sidebar(
-                ui.h2("Sidebar Panel"),
+                ui.h2("Input Area"),
                 ui.tags.hr(),
                 ui.h3("User Interaction Here"),
-                ui.input_text("name_input", "Enter your name", placeholder="Your Name"),
+                ui.input_text("name_input", "What's your name?", placeholder="Your Name"),
                 ui.input_text(
-                    "Country_input",
+                    "country_input",
                     "Enter Your Favorite Country to Visit",
-                    placeholder="Favorite Country",
-                ),
+                    placeholder="Fav Country",
+                ),        
                 ui.tags.hr(),
             ),
             ui.panel_main(
@@ -53,13 +54,13 @@ app_ui = ui.page_navbar(
                     ),
                     ui.tags.li(
                         "To explore the Penguins Dataset, click the 'Penguins' tab."
-                    )
+                    ),
                     ui.tags.li(
                         "To explore the Iris Dataset, click the 'Iris' tab."
                     ),
-                ),   
-                ui.tags.hr(),         
-                ui.h2("Main Panel with Reactive Output"),
+                ),
+                ui.tags.hr(),
+                ui.h2("Reactive Output"),
                 ui.tags.hr(),
                 ui.output_text_verbatim("welcome_output"),
                 ui.output_text_verbatim("insights_output"),
@@ -80,7 +81,7 @@ app_ui = ui.page_navbar(
             get_penguins_inputs(),
             get_penguins_outputs(),
         ),
-     ),
+    ),
     ui.nav(
         "Iris",
         ui.layout_sidebar(
@@ -93,7 +94,7 @@ app_ui = ui.page_navbar(
     ui.nav(ui.a("App", href="https://s566319ingamiller.shinyapps.io/cintel-03-data/")),
     ui.nav(ui.a("Examples", href="https://shinylive.io/py/examples/")),
     ui.nav(ui.a("Themes", href="https://bootswatch.com/")),
-    title=ui.h1("Inga Dashboard"),
+    title=ui.h1("Wheeler Dashboard"),
 )
 
 
@@ -110,14 +111,15 @@ def server(input, output, session):
     @output
     @render.text
     def insights_output():
-        answer = input.language_input()
-        count = len(answer)
-        language_string = f"You like {answer}. That takes {count} characters"
+        answer = input.name_input()
+        answer2 = input.country_input()
+        count = len(answer + answer2)
+        language_string = f"Your favorite country is {answer}. That takes {count} characters"
         return language_string
 
+    get_iris_server_functions(input, output, session)
     get_mtcars_server_functions(input, output, session)
     get_penguins_server_functions(input, output, session)
-    get_iris_server_functions(input, output, session)
-
+    
+           
 app = App(app_ui, server)
-
