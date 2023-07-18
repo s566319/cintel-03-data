@@ -117,9 +117,8 @@ def server(input, output, session):
         language_string = f"Your favorite country is {answer}. That takes {count} characters"
         return language_string
 
-    get_iris_server_functions(input, output, session)
     get_mtcars_server_functions(input, output, session)
     get_penguins_server_functions(input, output, session)
-    
+    get_iris_server_functions(input, output, session)
            
 app = App(app_ui, server)
